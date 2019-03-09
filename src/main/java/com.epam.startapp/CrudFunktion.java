@@ -21,6 +21,10 @@ public class CrudFunktion {
         return note;
     }
 
+    public String[] getFirstMassive() {
+        return createNote();
+    }
+
     public String[] fillNote(String[] massive) {
 
         System.out.println("Plese fill te massive with " + massive.length + " values");
@@ -50,30 +54,40 @@ public class CrudFunktion {
                 "If you want to delete whole massive press 3");
         int choose = sc.nextInt();
         if (choose == 1) {
-            System.out.println("Input number of element");
+            System.out.println("Input number of element which you want to delete");
             int elementNum = sc.nextInt();
+            for (int i = elementNum; i < oldmassive.length - 1; i++) {
+                oldmassive[i] = oldmassive[i + 1];
+                }
+            int[] newArr = new int[oldmassive.length - 1];
+            System.arraycopy(oldmassive, 0, newArr, 0, oldmassive.length - 1);
+            return oldmassive;
+            }
+
+        if (choose == 2) {
+            System.out.println("Input value of element which you want to add");
+            String newElement = sc.nextLine();
 
             int length = oldmassive.length;
-            for (int i = 0; i < length; i++) {
-                if (oldmassive[i] == oldmassive[elementNum]) {
-                    String[] newMassive = new String[length - 1];
-                    System.arraycopy(oldmassive, 0, newMassive, 0, i);
-                    System.arraycopy(oldmassive, i + 1, newMassive, i, newMassive.length - i - 1);
-                    return newMassive;
-                }
+            String[] note = new String[length + 1];
+            for (int i = 0; i < length + 1; i++) {
+                note[i - 1] = oldmassive[i];
+                note[i + 1] = newElement;
             }
-            System.out.print("Values after delete are: ");
-            for (int j = 0; j < oldmassive.length; j++)
-                System.out.print(oldmassive[j] + " ");
-            System.out.println(" ");
-            return oldmassive;
+            return note;
         }
+        if (choose == 3) {
+            System.out.println("Massive will be deleted");
 
-        System.out.print("Entered values are: ");
-        for (int j = 0; j < oldmassive.length; j++)
-            System.out.print(oldmassive[j] + " ");
-        System.out.println(" ");
+            int length = oldmassive.length;
+            String[] note = new String[length];
+            for (int i = 0; i < length + 1; i++) {
+                note[i - 1] = "";
+            }
+            return note;
+        }
         return oldmassive;
     }
 }
+
 
