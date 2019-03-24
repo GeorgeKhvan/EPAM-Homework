@@ -1,14 +1,14 @@
 package com.epam.startapp;
 
-public class NoteHome extends Base {
+public class NoteHome extends Note {
 
 
     public static void main(String[] args) {
-        Base base = new Base();
-        CrudFunktion crudFunktion = new CrudFunktion();
+
+        NoteBook crudFunktion = new NoteBook();
         base.sayHallo();
-        String[] myMassive = crudFunktion.getFirstMassive();
-        String[] newMassive = crudFunktion.fillNote(myMassive);
+        Note[] myMassive = crudFunktion.getFirstMassive();
+        Note[] newMassive = crudFunktion.fillNote(myMassive);
 
         crudFunktion.adcValue(newMassive);
 
